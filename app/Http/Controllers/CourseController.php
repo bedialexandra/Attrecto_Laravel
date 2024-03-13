@@ -50,7 +50,9 @@ class CourseController extends Controller
 
         $course = Course::create($data);
 
-        return response()->json($course);
+
+        //return response()->json($course);
+        return response()->json($course, 201);
     }
 
     /**
@@ -74,6 +76,6 @@ class CourseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+         return response()->json(Course::destroy($id));
     }
 }

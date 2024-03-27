@@ -15,4 +15,8 @@ class Course extends Model
         'author',
         'url'
     ];
+
+    public function author(){
+        return $this->hasOne(User::class, 'id','author_id');
+    }
 }

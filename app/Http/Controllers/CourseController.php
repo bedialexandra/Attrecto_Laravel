@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Resource;
 
 class CourseController extends Controller
 {
@@ -35,7 +36,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return response()->json(Course::all('title', 'description','url'));
+        return response()->json(CourseIndexResource::collection(Course::all()), Response::HTTP_OK);
 
     }
 
@@ -61,9 +62,9 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Course $course)
     {
-        return response()->json(Course::findOrFail($id));
+        return response()->json($course);
     }
 
     /**
